@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('login');
+	return View::make('hello');
 });
 
 Route::get('candidates/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@create','as'=>'candidates.create'));
@@ -34,9 +34,8 @@ Route::post('candidates/candidate/{id}',array('before'=>'auth','uses'=>'Payments
 
 
 
-Route::get('/login', function(){
-    return View::make('login');
-});
+
+Route::get('/login',array('uses'=>'LoginController@index','as'=>'login'));
 
 Route::post('/login','LoginController@loginAuth');
 

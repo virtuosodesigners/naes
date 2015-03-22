@@ -41,9 +41,8 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-9">
+
+            <div class="col-md-8 col-md-offset-2">
                 <div class="jumbotron">
                     <h1>Payments for {{date('Y-m-d')}}</h1>
                     @if(Session::has('notification'))
@@ -120,8 +119,7 @@
 
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
+
         </div><!-- End of row -->
     </div> <!-- End of container -->
 

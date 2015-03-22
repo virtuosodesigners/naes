@@ -6,3 +6,19 @@ h1{
 	color:#2E8F09 !important;
     font-size:25px !important;
 }
+
+.home-banner{
+    background-image: url("/images/starbeach.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+    text-align: center;
+    margin-top: -81px;
+    height: 110%;
+    padding-top: 5%;
+}
+
+.jumbotron{
+    background-color: #FFF;
+    opacity: 0.8;
+    margin-top:1%;
+}

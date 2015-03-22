@@ -6,6 +6,7 @@ NAES: Login
 @stop
 
 @section('body')
+    <div class="home-banner">
 <div class="container-fluid">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -31,9 +32,8 @@ NAES: Login
         </div><!-- /.container-fluid -->
     </nav>
 <div class="row">
-<div class="col-md-2">
-</div>
-<div class="col-md-8">
+
+<div class="col-md-8 col-md-offset-2">
     <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -43,11 +43,18 @@ NAES: Login
                 </h1>
             </div>
 <div class="row" style="margin-top: 20px;">
-    <div class="col-md-11">
+    <div class="col-md-8 col-md-offset-2">
 
             {{Form::open(array('url'=>'login','class'=>'form-horizontal'))}}
             <div class="form-group">
-                <p class="bg-danger">{{ $errors->first('password') }}</p>
+
+                @if($errors->first('password'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <p>  {{ $errors->first('password') }}</p>
+                </div>
+                @endif
+
             {{Form::label('username','Username',array('class'=>'col-sm-2 control-label'))}}
                 <div class="col-sm-10">
                     <div class="input-group">
@@ -89,9 +96,8 @@ NAES: Login
 
     </div>
 </div>
-<div class="col-md-2">
-</div>
+
 </div><!-- End of row -->
 </div> <!-- End of container -->
-
+</div>
 @stop();
