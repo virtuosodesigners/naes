@@ -71,7 +71,7 @@
                             {{Form::text('filterdateto',null,array('class'=>'form-control','id'=>'to','placeholder'=>'To'))}}
                         </div>
                         <div class="col-sm-4">
-                        {{Form::submit('Filter',array('class'=>'btn btn-primary'))}}
+                        {{Form::submit('Filter',array('class'=>'btn btn-warning'))}}
                             </div>
                     </div>
 
@@ -112,7 +112,7 @@
                             {{Form::open(array('route'=>'payments.csvpaymentexport','class'=>'form-horizontal','method'=>'GET'))}}
                             {{Form::hidden('filterdatefrom',$filterdatefrom=Request::get('filterdatefrom'))}}
                             {{Form::hidden('filterdateto',$filterdateto=Request::get('filterdateto'))}}
-                            {{Form::submit('Export as CSV',array('class'=>'btn btn-primary'))}}
+                            {{Form::submit('Export as CSV',array('class'=>'btn btn-success'))}}
                             {{Form::close()}}
 
                         </div>

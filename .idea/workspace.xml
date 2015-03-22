@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40197462" vertical-offset="690" max-vertical-offset="2130">
+            <state vertical-scroll-proportion="-11.875" vertical-offset="690" max-vertical-offset="2130">
               <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
               <folding />
             </state>
@@ -105,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paymentsoftheday.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="paymentsoftheday.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/payments/paymentsoftheday.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-68.125" vertical-offset="0" max-vertical-offset="1995">
-              <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.36530325" vertical-offset="836" max-vertical-offset="1995">
+              <caret line="73" column="79" selection-start-line="73" selection-start-column="79" selection-end-line="73" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -155,12 +155,12 @@
         <option value="$PROJECT_DIR$/app/views/candidates/candidates.blade.php" />
         <option value="$PROJECT_DIR$/app/views/layouts/main.blade.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/views/payments/paymentsoftheday.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/CandidatesController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/controllers/Paymentscontroller.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/config/database.php" />
+        <option value="$PROJECT_DIR$/app/views/payments/paymentsoftheday.blade.php" />
       </list>
     </option>
   </component>
@@ -878,14 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/payments/paymentsoftheday.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-68.125" vertical-offset="0" max-vertical-offset="1995">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-121.25" vertical-offset="0" max-vertical-offset="3075">
@@ -926,14 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Paymentscontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="3525">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.8" vertical-offset="0" max-vertical-offset="210">
@@ -944,8 +928,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40197462" vertical-offset="690" max-vertical-offset="2130">
+        <state vertical-scroll-proportion="-11.875" vertical-offset="690" max-vertical-offset="2130">
           <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Paymentscontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="3525">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/payments/paymentsoftheday.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36530325" vertical-offset="836" max-vertical-offset="1995">
+          <caret line="73" column="79" selection-start-line="73" selection-start-column="79" selection-end-line="73" selection-end-column="79" />
           <folding />
         </state>
       </provider>
