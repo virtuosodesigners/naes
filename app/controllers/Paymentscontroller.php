@@ -1,6 +1,6 @@
 <?php
 
-class Paymentscontroller extends \BaseController {
+class PaymentsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
