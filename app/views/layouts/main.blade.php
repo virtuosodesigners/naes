@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     @section('head')
         <link rel="stylesheet" href="{{URL::asset('css/bootstrap-theme.min.css')}}" type="text/css">
