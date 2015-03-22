@@ -44,7 +44,7 @@
 <div class="col-lg-8">
 <h1>Add A New Candidate</h1>
 </div>
-    {{Form::open(array('url'=>'adduser','class'=>'form-horizontal'))}}
+    {{Form::open(array('url'=>'addcandidate','class'=>'form-horizontal','files'=>true))}}
     <div class="col-lg-6">
     <div class="form-group">
 
@@ -80,9 +80,9 @@
 
         <div class="form-group">
 
-            {{Form::label('user_type','User Type',array('class'=>'col-sm-2 control-label'))}}
+            {{Form::label('user_type','Candidate Type',array('class'=>'col-sm-2 control-label'))}}
             <div class="col-sm-10">
-                {{Form::select('user_type',
+                {{Form::select('candidate_type',
                 array(
                 'Bartender'=>'Bartender',
                 'Beverage Server'=>'Beverage Server',
@@ -135,7 +135,7 @@
 
             {{Form::label('inputpassportexpiry','Passport Expiry Date',array('class'=>'col-sm-2 control-label'))}}
             <div class="col-sm-10">
-                {{Form::text('passportexpiry',null,array('class'=>'form-control','id'=>'inputpassportexpiry','placeholder'=>'Enter Candidate\'s Passport Expiry Date'))}}
+                {{Form::text('passportexpiry',null,array('class'=>'form-control','id'=>'datepicker','placeholder'=>'Enter Candidate\'s Passport Expiry Date'))}}
             </div>
         </div>
 
@@ -177,7 +177,7 @@
 
             {{Form::label('inputposition','CBC',array('class'=>'col-sm-2 control-label'))}}
             <div class="col-sm-10">
-                {{Form::select('user_type',
+                {{Form::select('cbc',
                 array(
                 'Pass'=>'Pass',
                 'Fail'=>'Fail')

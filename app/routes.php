@@ -16,23 +16,34 @@ Route::get('/', function()
 	return View::make('login');
 });
 
-Route::get('/addcandidate',array('before'=>'auth','uses'=>'AddCandidateController@showForm'));
+Route::get('candidates/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@create','as'=>'candidates.create'));
+Route::get('candidates',array('before'=>'auth','uses'=>'CandidatesController@index','as'=>'candidates.index'));
+Route::get('candidates/candidate/{id}',array('before'=>'auth','uses'=>'CandidatesController@show','as'=>'candidates.show'));
+Route::post('/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@store','as'=>'candidates.store'));
+Route::get('candidates/edit/{id}',array('before'=>'auth','uses'=>'CandidatesController@edit','as'=>'candidates.edit'));
+Route::post('/update/{id}',array('before'=>'auth','uses'=>'CandidatesController@update','as'=>'candidates.update'));
+Route::get('candidates/export',array('before'=>'auth','uses'=>'CandidatesController@csvExport','as'=>'csvexport'));
+Route::get('paymentsfortheday',array('before'=>'auth','uses'=>'PaymentsController@index','as'=>'payments.thedaypayment'));
+//Route::get('paymentsfortheday',array('before'=>'auth','uses'=>'PaymentsController@getPaymentsWhere','as'=>'payments.filter'));
+Route::get('payments/export',array('before'=>'auth','uses'=>'PaymentsController@csvPaymentExport','as'=>'payments.csvpaymentexport'));
+
+
+
+
+Route::post('candidates/candidate/{id}',array('before'=>'auth','uses'=>'PaymentsController@store','as'=>'payments.store'));
+
+
 
 Route::get('/login', function(){
     return View::make('login');
 });
 
-Route::post('/login',function(){
-    $credentials=Input::only('username','password');
-    if(Auth::attempt($credentials)){
-        return Redirect::intended('/');
-    }
-    return Redirect::to('login');
-
-});
+Route::post('/login','LoginController@loginAuth');
 
 Route::get('/adduser','RegisterController@showRegisterForm');
 Route::post('/adduser','RegisterController@processUser');
+
+
 
 Route::get('user/{id}/edit',array('uses'=>'UsersController@editUser','as'=>'user.edit'));
 Route::post('user/{id}/edit',array('uses'=>'UsersController@updateUserData','as'=>'user.edit'));

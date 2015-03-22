@@ -44,13 +44,16 @@ NAES: Login
             </div>
 <div class="row" style="margin-top: 20px;">
     <div class="col-md-11">
+
             {{Form::open(array('url'=>'login','class'=>'form-horizontal'))}}
             <div class="form-group">
+                <p class="bg-danger">{{ $errors->first('password') }}</p>
             {{Form::label('username','Username',array('class'=>'col-sm-2 control-label'))}}
                 <div class="col-sm-10">
                     <div class="input-group">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                         {{Form::text('username',null,array('class'=>'form-control','id'=>'inputUsername','placeholder'=>'Username'))}}
+
                     </div>
                     </div>
                 </div>
@@ -60,7 +63,9 @@ NAES: Login
             <div class="col-sm-10">
                 <div class="input-group">
                     <div class="input-group-addon"><span class="fa fa-key"></span></div>
-                    {{ Form::password('password', array('class' => 'form-control','id'=>'inputPassword','placeholder'=>'Password')) }}    </div>
+                    {{ Form::password('password', array('class' => 'form-control','id'=>'inputPassword','placeholder'=>'Password')) }}
+
+                </div>
             </div>
         </div>
         <div class="form-group">

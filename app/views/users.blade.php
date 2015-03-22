@@ -14,18 +14,18 @@ NAES: Login
 <div class="jumbotron">
   <h1 style="text-align:center;">Users</h1>
     <table class="table table-striped">
-       <tr><th>User ID</th>
-           <th>Username</th>
+       <tr><th>Candidate ID</th>
+           <th>Name</th>
            <th>Email</th>
-           <th>User Type</th>
+           <th>Candidate Type</th>
            <th colspan="2"></th></tr>
-        @foreach($users as $user)
+        @foreach($candidates as $candidate)
             <tr>
 
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->username}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->user_type}}</td>
+                    <td>{{$candidate->id}}</td>
+                    <td>{{$candidate->name}}</td>
+                    <td>{{$candidate->email}}</td>
+                    <td>{{$candidate->candidate_type}}</td>
                     <td><a href="/user/{{$user->id}}/edit">Edit</a></td>
                     <td>Delete</td>
 

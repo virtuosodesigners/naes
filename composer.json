@@ -4,7 +4,10 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"intervention/image": "~2.1",
+		"way/generators": "2.*",
+       "maatwebsite/excel": "1.*"
 	},
 	"autoload": {
 		"classmap": [
