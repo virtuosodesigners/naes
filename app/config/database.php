@@ -63,50 +63,50 @@ return array(
 			'prefix'    => '',
 		),
 
-        /*'mysql' => array(
-            'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'database'  => 'naes',
-            'username'  => 'root',
-            'password'  => 'root',
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ),*/
+        /* 'mysql' => array(
+             'driver'    => 'mysql',
+             'host'      => 'localhost',
+             'database'  => 'naes',
+             'username'  => 'root',
+             'password'  => 'root',
+             'charset'   => 'utf8',
+             'collation' => 'utf8_unicode_ci',
+             'prefix'    => '',
+         ),*/
 
 
-        'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'forge',
-			'username' => 'forge',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
+         'pgsql' => array(
+             'driver'   => 'pgsql',
+             'host'     => 'localhost',
+             'database' => 'forge',
+             'username' => 'forge',
+             'password' => '',
+             'charset'  => 'utf8',
+             'prefix'   => '',
+             'schema'   => 'public',
+         ),
 
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
-		),
+         'sqlsrv' => array(
+             'driver'   => 'sqlsrv',
+             'host'     => 'localhost',
+             'database' => 'database',
+             'username' => 'root',
+             'password' => '',
+             'prefix'   => '',
+         ),
 
-	),
+     ),
 
-	/*
-	|--------------------------------------------------------------------------
-	| Migration Repository Table
-	|--------------------------------------------------------------------------
-	|
-	| This table keeps track of all the migrations that have already run for
-	| your application. Using this information, we can determine which of
-	| the migrations on disk haven't actually been run in the database.
-	|
-	*/
+     /*
+     |--------------------------------------------------------------------------
+     | Migration Repository Table
+     |--------------------------------------------------------------------------
+     |
+     | This table keeps track of all the migrations that have already run for
+     | your application. Using this information, we can determine which of
+     | the migrations on disk haven't actually been run in the database.
+     |
+     */
 
 	'migrations' => 'migrations',
 

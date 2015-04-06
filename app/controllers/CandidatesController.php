@@ -154,7 +154,42 @@ class CandidatesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
+        $candidate=Candidate::where('id','=',$id);
+
+        Candidate::where('id','=',$candidate)->update(
+            array(
+
+        'name' => Input::get('name'),
+        'address'=>Input::get('address'),
+        'tel'=>Input::get('tel'),
+        'email'=>Input::get('email'),
+        'candidate_type'=>Input::get('candidate_type'),
+        'passport'=>Input::get('passport'),
+        'passportexpiry'=>Input::get('passportexpiry'),
+        'tel1'=>Input::get('tel1'),
+       'orientationdate'=>Input::get('orientationdate'),
+        'interviewdate'=>Input::get('interviewdate'),
+        'medicaldate'=>Input::get('medicaldate'),
+        'cbc'=>Input::get('cbc'),
+        'embassydate'=>Input::get('embassydate'),
+        'traveldate'=>Input::get('traveldate'),
+
+       'employer'=>Input::get('employer'),
+        'position2'=>Input::get('position2'),
+       'passissuedate'=>input::get('passissuedate'),
+        'emergency'=>Input::get('emergency'),
+        'emergencyaddress'=>Input::get('emergencyaddress'),
+       'contract'=>Input::get('contract')? true : false,
+        'passpictures'=>Input::get('passpictures')? true : false,
+        'passport1'=>Input::get('passport1')? true : false,
+        'recommendations'=>Input::get('recommendations')? true : false,
+        'regfee'=>Input::get('regfee')? true : false,
+        'visa'=>Input::get('visa')? true : false,
+        'paymenttype'=>Input::get('paymenttype'),
+        ));
+
+        return Redirect::to('candidates.show')->with('notification', 'Candidate account updated!');
 	}
 
 
@@ -166,7 +201,9 @@ class CandidatesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $candidate=Candidate::findOrFail($id);
+        $candidate->delete();
+        return Redirect::to('candidates')->with('danger', 'Candidate deleted successfully!');
 	}
 
 

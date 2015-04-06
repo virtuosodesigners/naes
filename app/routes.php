@@ -22,6 +22,8 @@ Route::get('candidates/candidate/{id}',array('before'=>'auth','uses'=>'Candidate
 Route::post('/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@store','as'=>'candidates.store'));
 Route::get('candidates/edit/{id}',array('before'=>'auth','uses'=>'CandidatesController@edit','as'=>'candidates.edit'));
 Route::post('/update/{id}',array('before'=>'auth','uses'=>'CandidatesController@update','as'=>'candidates.update'));
+Route::get('candidates/delete/{id}',array('before'=>'auth','uses'=>'CandidatesController@destroy','as'=>'candidates.delete'));
+
 Route::get('candidates/export',array('before'=>'auth','uses'=>'CandidatesController@csvExport','as'=>'csvexport'));
 Route::get('allpayments',array('before'=>'auth','uses'=>'PaymentsController@index','as'=>'payments.thedaypayment'));
 //Route::get('paymentsfortheday',array('before'=>'auth','uses'=>'PaymentsController@getPaymentsWhere','as'=>'payments.filter'));

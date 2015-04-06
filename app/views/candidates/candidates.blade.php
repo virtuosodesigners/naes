@@ -85,7 +85,7 @@ NAES: List Of Candidates
                     <td>{{$candidate->candidate_type}}</td>
                     <td><a href="candidates/candidate/{{$candidate->id}}">View</a></td>
                     <td><a href="candidates/edit/{{$candidate->id}}">Edit</a></td>
-                    <td>Delete</td>
+                    <td><a href="candidates/delete/{{$candidate->id}}">Delete</a></td>
 
             </tr>
         @endforeach
