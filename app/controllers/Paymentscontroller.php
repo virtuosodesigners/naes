@@ -129,10 +129,15 @@ class PaymentsController extends \BaseController {
 	{
         $verify_attempt=0;
         $manager=Input::get('manager');
-        //found the user verify code
+        //find the user verify code
         $users=User::where('username', $manager)->first();
-
+        if($users){
         $usercode=$users->codverify;
+        }else{
+            return Redirect::to('candidates/candidate/' . Input::get('candidateid'))->with('danger', 'User does not exists');
+
+        }
+
         //get logged in user
         $user   = Auth::user()->id;
         $loggeduser=User::where('id',$user)->first();
@@ -155,7 +160,7 @@ class PaymentsController extends \BaseController {
 
 
         }else{
-            if($attempts>3){
+            if($attempts > 3){
 
                 return Redirect::to('candidates')->with('danger', 'You went over the Code verification attempts limit');
 

@@ -10,28 +10,37 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+
                 <a class="navbar-brand" href="#">New Adventures Employment</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/adduser">Add User<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Search Candidates</a></li>
+                    <li><a href="/candidates">View All Candidates</a></li>
+                    <li><a href="/candidates/addcandidate">Add Candidate</a></li>
+                    <li><a href="/allpayments">Payments</a></li>
+
 
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+
+                {{Form::open(array('route'=>'candidates.index','class'=>'navbar-form navbar-left','method'=>'GET'))}}
+                <div class="form-group">
+
+
+
+                    {{Form::text('searchf',null,array('class'=>'form-control','id'=>'searchf','placeholder'=>'Search Candidate'))}}
+                </div>
+
+
+                {{Form::submit('Search',array('class'=>'btn btn-default'))}}
+
+
+
+                {{Form::close()}}
+
+
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout">Logout</a></li>
 
@@ -44,7 +53,7 @@
 
             <div class="col-md-8 col-md-offset-2">
                 <div class="jumbotron">
-                    <h1>Payments for {{date('Y-m-d')}}</h1>
+                    <h1>Payments</h1>
                     @if(Session::has('notification'))
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

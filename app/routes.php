@@ -23,7 +23,7 @@ Route::post('/addcandidate',array('before'=>'auth','uses'=>'CandidatesController
 Route::get('candidates/edit/{id}',array('before'=>'auth','uses'=>'CandidatesController@edit','as'=>'candidates.edit'));
 Route::post('/update/{id}',array('before'=>'auth','uses'=>'CandidatesController@update','as'=>'candidates.update'));
 Route::get('candidates/export',array('before'=>'auth','uses'=>'CandidatesController@csvExport','as'=>'csvexport'));
-Route::get('paymentsfortheday',array('before'=>'auth','uses'=>'PaymentsController@index','as'=>'payments.thedaypayment'));
+Route::get('allpayments',array('before'=>'auth','uses'=>'PaymentsController@index','as'=>'payments.thedaypayment'));
 //Route::get('paymentsfortheday',array('before'=>'auth','uses'=>'PaymentsController@getPaymentsWhere','as'=>'payments.filter'));
 Route::get('payments/export',array('before'=>'auth','uses'=>'PaymentsController@csvPaymentExport','as'=>'payments.csvpaymentexport'));
 

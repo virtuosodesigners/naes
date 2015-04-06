@@ -7,10 +7,25 @@ class CandidatesController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+    private function filter(){
+        $searchf= Input::get('searchf');
+
+        if($searchf) {
+            $candidates = Candidate::where('id', '=', $searchf)->orWhere('name', 'LIKE', "%$searchf%")->get();
+
+        } else{
+            $candidates=Candidate::orderBy('created_at','DESC')->get();
+        }
+
+        return $candidates;
+    }
 	public function index()
 	{
 		//
-        $candidates=Candidate::all();
+        $candidates=$this->filter();
+
+       // $candidates=Candidate::all();
         return View::make('candidates/candidates')->with('candidates',$candidates);
 	}
 
