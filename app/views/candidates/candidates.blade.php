@@ -40,7 +40,7 @@ NAES: List Of Candidates
 
 
                 {{Form::close()}}
-                
+
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout">Logout</a></li>
