@@ -15,6 +15,7 @@ class UsersController extends BaseController{
            'password' =>  Hash::make(Input::get('password')),
            'email'  => Input::get('email'),
            'user_type' => Input::get('user_type'),
+           'codverify' => Input::get('codverify'),
 
        ));
 

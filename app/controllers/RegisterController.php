@@ -24,6 +24,7 @@ class RegisterController extends BaseController{
         $user->password=Hash::make(Input::get('password'));
         $user->email=Input::get('email');
         $user->user_type=Input::get('user_type');
+        $user->codverify=Input::get('codverify');
         $user->save();
 
         $theUsername=Input::get('username');

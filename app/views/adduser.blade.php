@@ -77,6 +77,15 @@ NAES: Add New User
 
     <div class="form-group">
 
+        {{Form::label('codverify1','Verification Code',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('codverify',null,array('class'=>'form-control','id'=>'codverify1','placeholder'=>''))}}
+            {{$errors->first('codverify','<p class=bg-danger>:message</p>')}}
+        </div>
+    </div>
+
+    <div class="form-group">
+
         {{Form::label('user_type','User Type',array('class'=>'col-sm-2 control-label'))}}
         <div class="col-sm-10">
             {{Form::select('user_type',
@@ -90,6 +99,8 @@ NAES: Add New User
             'placeholder'=>'Username'))}}
         </div>
     </div>
+
+
 
 
   <div class="form-group">
