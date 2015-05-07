@@ -23,7 +23,15 @@
                 $( "#inputmedical" ).datepicker({dateFormat:'yy-mm-dd'});
                 $( "#inputembassy" ).datepicker({dateFormat:'yy-mm-dd'});
                 $( "#inputtravel" ).datepicker({dateFormat:'yy-mm-dd'});
+                $( "#inputempdateFrom" ).datepicker({dateFormat:'yy-mm-dd'});
+                $( "#inputempdateFrom2" ).datepicker({dateFormat:'yy-mm-dd'});
+                $( "#inputempdateTo" ).datepicker({dateFormat:'yy-mm-dd'});
+                $( "#inputempdateTo2" ).datepicker({dateFormat:'yy-mm-dd'});
                 $( "#inputissuedate" ).datepicker({dateFormat:'yy-mm-dd'});
+                $( "#notedatepicker" ).datepicker({dateFormat:'yy-mm-dd'});
+
+
+
 
             });
 

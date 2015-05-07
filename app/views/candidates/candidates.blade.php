@@ -20,7 +20,7 @@ NAES: List Of Candidates
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/candidates">View All Candidates</a></li>
-                    <li><a href="/candidates/addcandidate">Add Candidate</a></li>
+                    <li><a href="/candidates/create">Add Candidate</a></li>
                     <li><a href="/allpayments">Payments</a></li>
 
 
@@ -83,9 +83,16 @@ NAES: List Of Candidates
                     <td>{{$candidate->name}}</td>
                     <td>{{$candidate->email}}</td>
                     <td>{{$candidate->candidate_type}}</td>
-                    <td><a href="candidates/candidate/{{$candidate->id}}">View</a></td>
-                    <td><a href="candidates/edit/{{$candidate->id}}">Edit</a></td>
-                    <td><a href="candidates/delete/{{$candidate->id}}">Delete</a></td>
+                    <td><a href="candidates/{{$candidate->id}}">View</a></td>
+                    <td><a href="candidates/{{$candidate->id}}/edit">Edit</a></td>
+                    <td>
+                        {{ Form::open(array('url' => 'candidates/' . $candidate->id, 'class' => 'pull-right')) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
+                        {{ Form::close() }}
+
+
+                    </td>
 
             </tr>
         @endforeach

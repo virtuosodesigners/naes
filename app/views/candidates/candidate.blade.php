@@ -20,7 +20,7 @@ NAES: {{$candidate->name}}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/candidates">View All Candidates</a></li>
-                    <li><a href="/candidates/addcandidate">Add Candidate</a></li>
+                    <li><a href="/candidates/create">Add Candidate</a></li>
                     <li><a href="/allpayments">Payments</a></li>
 
 
@@ -55,6 +55,7 @@ NAES: {{$candidate->name}}
 <div class="col-md-9">
 <div class="jumbotron">
     <h1>{{$candidate->name}}</h1>
+    <span><i>Candidate posted by {{$candidate->posted_by}} on {{$candidate->created_at}} </i></span> <br>
     @if(Session::has('notification'))
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -71,6 +72,7 @@ NAES: {{$candidate->name}}
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#candidate">Candidate Information</a></li>
         <li><a data-toggle="tab" href="#payments">Payments</a></li>
+        <li><a data-toggle="tab" href="#notes">Notes</a></li>
 
     </ul>
     <div class="tab-content">
@@ -79,13 +81,20 @@ NAES: {{$candidate->name}}
     <div class="row">
     <div class="col-md-6">
         <ul class="list-group">
+            <li class="list-group-item"><b>Registration number :</b> {{$candidate->registration_number}}</li>
+            <li class="list-group-item"><b>Status :</b> {{$candidate->candidatestatus}}</li>
             <li class="list-group-item"><b>Address :</b> {{$candidate->address}}</li>
+            <li class="list-group-item"><b>City :</b> {{$candidate->city}}</li>
+            <li class="list-group-item"><b>Parish :</b> {{$candidate->parish}}</li>
+            <li class="list-group-item"><b>Country :</b> {{$candidate->country}}</li>
             <li class="list-group-item"><b>Telephone Number :</b> {{$candidate->tel}}</li>
             <li class="list-group-item"><b>Email Addreess :</b> {{$candidate->email}}</li>
-            <li class="list-group-item"><b>Candidate Type :</b> {{$candidate->candidate_type}}</li>
+            <li class="list-group-item"><b>Position Required :</b> {{$candidate->candidate_type}}</li>
+            <li class="list-group-item"><b>Optional Position :</b> {{$candidate->optionalposition}}</li>
             <li class="list-group-item"><b>Passport Number :</b> {{$candidate->passport}}</li>
+            <li class="list-group-item"><b>Passport Issue Date :</b> {{$candidate->passissuedate}}</li>
             <li class="list-group-item"><b>Passport Expiry Date :</b> {{$candidate->passportexpiry}}</li>
-            <li class="list-group-item"><b>Telephone :</b> {{$candidate->tel1}}</li>
+
             <li class="list-group-item"><b>Orientation Date :</b> {{ $candidate->orientationdate}}</li>
             <li class="list-group-item"><b>Job interview Date :</b> {{$candidate->interviewdate}}</li>
             <li class="list-group-item"><b>Medical Date :</b> {{$candidate->medicaldate}}</li>
@@ -93,8 +102,6 @@ NAES: {{$candidate->name}}
             <li class="list-group-item"><b>Embassy Date :</b> {{$candidate->embassydate}}</li>
             <li class="list-group-item"><b>Travel Date :</b> {{$candidate->traveldate}}</li>
             <li class="list-group-item"><b>Employer :</b> {{$candidate->employer}}</li>
-            <li class="list-group-item"><b>Position 2 :</b> {{$candidate->position2}}</li>
-            <li class="list-group-item"><b>Passport Issue Date :</b> {{$candidate->passissuedate}}</li>
             <li class="list-group-item"><b>Emergency Contact :</b> {{$candidate->emergency}}</li>
             <li class="list-group-item"><b>Emergency Contact Address :</b> {{$candidate->emergencyaddress}}</li>
 
@@ -121,8 +128,32 @@ NAES: {{$candidate->name}}
 
 
         </ul>
-<!--- add modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#userPayment">
+
+        <h3> Career History Information</h3>
+        <ul class="list-group">
+
+            <li class="list-group-item"><b>Company :</b> {{$candidate->company}}</li>
+            <li class="list-group-item"><b>Position Worked :</b> {{$candidate->positonworked}}</li>
+            <li class="list-group-item"><b>Embassy Date :</b> {{$candidate->empdateFrom}}</li>
+            <li class="list-group-item"><b>Travel Date :</b> {{$candidate->empdateTo}}</li>
+
+
+        </ul>
+        <hr>
+        <ul class="list-group">
+
+            <li class="list-group-item"><b>Company :</b> {{$candidate->company2}}</li>
+            <li class="list-group-item"><b>Position Worked :</b> {{$candidate->positonworked2}}</li>
+            <li class="list-group-item"><b>Embassy Date :</b> {{$candidate->empdateFrom2}}</li>
+            <li class="list-group-item"><b>Travel Date :</b> {{$candidate->empdateTo2}}</li>
+
+
+        </ul>
+
+
+
+        <!--- add modal -->
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#userPayment">
             Add Payment
         </button>
 
@@ -138,7 +169,7 @@ NAES: {{$candidate->name}}
                         {{Form::open(array('route'=>'payments.store','class'=>'form-horizontal'))}}
 
                         {{Form::hidden('candidateid',$candidate->id)}}
-                        {{Form::hidden('manager','supermike')}}
+
 
                         <div class="form-group">
 
@@ -202,6 +233,57 @@ NAES: {{$candidate->name}}
 
         <!-- End modal-->
 
+
+        <!--- add modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#userNote">
+            Add Note
+        </button>
+
+
+        <div class="modal fade" id="userNote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h1 class="modal-title" id="myModalLabel">Add Note</h1>
+                    </div>
+                    <div class="modal-body">
+                        {{Form::open(array('route'=>'notes.store','class'=>'form-horizontal'))}}
+
+                        {{Form::hidden('candidateid',$candidate->id)}}
+                        {{Form::hidden('manager','supermike')}}
+
+
+
+                        <div class="form-group">
+
+                            {{Form::label('inputnotedate','Note Date',array('class'=>'col-sm-2 control-label'))}}
+                            <div class="col-sm-10">
+                                {{Form::text('notedate',null,array('class'=>'form-control','id'=>'notedatepicker','placeholder'=>'Select the Date'))}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            {{Form::label('inputnote','Note',array('class'=>'col-sm-2 control-label'))}}
+                            <div class="col-sm-10">
+                                {{Form::textarea('note',null,array('class'=>'form-control','id'=>'inputnote','placeholder'=>''))}}
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        {{Form::submit('Save Note',array('class'=>'btn btn-primary'))}}
+                        {{Form::close()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End modal-->
+
     </div>
     </div>
         </div>
@@ -233,6 +315,31 @@ NAES: {{$candidate->name}}
 
 
             </div>
+
+        <div id="notes" class="tab-pane fade">
+            <h4>Notes</h4>
+
+
+
+
+            <table class="table table-striped">
+
+                @foreach(Candidate::findorFail($candidate->id)->note as $note)
+                    <tr>
+
+                        <td>
+                            <p style="font-size: 12px;">{{$note->note}}</p>
+
+                       <span style="font-size:11px;"><i>Posted on: {{$note->note_date}} by {{$note->posted_by}}</i></span>
+                        </td>
+
+
+                    </tr>
+                @endforeach
+            </table>
+
+
+        </div>
         </div>
 
 </div>

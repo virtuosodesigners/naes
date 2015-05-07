@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="/candidates">View All Candidates</a></li>
-                    <li><a href="/candidates/addcandidate">Add Candidate</a></li>
+                    <li><a href="/candidates/create">Add Candidate</a></li>
                     <li><a href="/allpayments">Payments</a></li>
 
 
@@ -52,7 +52,7 @@
 <div class="col-lg-8">
 <h1>Add A New Candidate</h1>
 </div>
-    {{Form::open(array('url'=>'addcandidate','class'=>'form-horizontal','files'=>true))}}
+    {{Form::open(array('route' => 'candidates.store','class'=>'form-horizontal','files'=>true))}}
     <div class="col-lg-6">
     <div class="form-group">
 
@@ -67,6 +67,48 @@
             {{Form::label('inputaddress','Address',array('class'=>'col-sm-2 control-label'))}}
             <div class="col-sm-10">
                 {{Form::text('address',null,array('class'=>'form-control','id'=>'inputaddress','placeholder'=>'Enter Candidate\'s Address'))}}
+            </div>
+        </div>
+        <div class="form-group">
+
+            {{Form::label('inputcity','City/Area',array('class'=>'col-sm-2 control-label'))}}
+            <div class="col-sm-10">
+                {{Form::text('city',null,array('class'=>'form-control','id'=>'inputcity','placeholder'=>'City'))}}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{Form::label('inputparishes','Parishes',array('class'=>'col-sm-2 control-label'))}}
+            <div class="col-sm-10">
+                {{Form::select('parishes',
+                array(
+                'Clarendon'=>'Clarendon',
+                'Hanover'=>'Hanover',
+                'Kingston'=>'Kingston',
+                'Manchester'=>'Manchester',
+                'Portland'=>'Portland',
+                'St. Andrew'=>'St. Andrew',
+                'St. Ann'=>'St. Ann',
+                'St. Catherine'=>'St. Catherine',
+                'St. Elizabeth'=>'St. Elizabeth',
+                'St. James'=>'St. James',
+                'St. Mary'=>'St. Mary',
+                'St. Thomas'=>'St. Thomas',
+                'Trelawny'=>'Trelawny',
+                'Westmoreland'=>'Westmoreland')
+                ,null,array(
+                'class'=>'form-control',
+                'id'=>'inputparishes',
+                ))}}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{Form::label('inputcountry','Country',array('class'=>'col-sm-2 control-label'))}}
+            <div class="col-sm-10">
+                {{Form::text('country',null,array('class'=>'form-control','id'=>'inputcity','placeholder'=>'Country'))}}
             </div>
         </div>
 
@@ -88,7 +130,7 @@
 
         <div class="form-group">
 
-            {{Form::label('user_type','Candidate Type',array('class'=>'col-sm-2 control-label'))}}
+            {{Form::label('user_type','Position Desired',array('class'=>'col-sm-2 control-label'))}}
             <div class="col-sm-10">
                 {{Form::select('candidate_type',
                 array(
@@ -126,15 +168,31 @@
                 ,null,array(
                 'class'=>'form-control',
                 'id'=>'inputUserType',
-                'placeholder'=>'Username'))}}
+                ))}}
             </div>
         </div>
 
         <div class="form-group">
 
-            {{Form::label('inputpassport','Passport',array('class'=>'col-sm-2 control-label'))}}
+            {{Form::label('inputoptionalposition','Optional Position',array('class'=>'col-sm-2 control-label'))}}
+            <div class="col-sm-10">
+                {{Form::text('optionalposition',null,array('class'=>'form-control','id'=>'inputoptionalposition','placeholder'=>'Optional Position'))}}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{Form::label('inputpassport','Passport Number',array('class'=>'col-sm-2 control-label'))}}
             <div class="col-sm-10">
                 {{Form::text('passport',null,array('class'=>'form-control','id'=>'inputpassport','placeholder'=>'Enter Candidate\'s Passport Number'))}}
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            {{Form::label('inputissuedate','Passport Issue Date',array('class'=>'col-sm-2 control-label'))}}
+            <div class="col-sm-10">
+                {{Form::text('passissuedate',null,array('class'=>'form-control','id'=>'inputissuedate','placeholder'=>'Enter Candidate\'s Passport Issue Date'))}}
             </div>
         </div>
 
@@ -148,13 +206,7 @@
         </div>
 
 
-        <div class="form-group">
 
-            {{Form::label('inputtelephone','Telephone',array('class'=>'col-sm-2 control-label'))}}
-            <div class="col-sm-10">
-                {{Form::text('tel1',null,array('class'=>'form-control','id'=>'inputtelephone','placeholder'=>'Enter Candidate\'s Telephone'))}}
-            </div>
-        </div>
 
         <div class="form-group">
 
@@ -211,10 +263,48 @@
                 {{Form::text('traveldate',null,array('class'=>'form-control','id'=>'inputtravel','placeholder'=>'Enter Candidate\'s Travel Date'))}}
             </div>
         </div>
+<hr>
+        <h3>Please check where applicable</h3>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    {{Form::checkbox('contract','Yes - Applicant Contract',false)}}
+                    {{Form::label('contract','Applicant Contract')}}
+
+                </div>
+                <div class="checkbox">
+                    {{Form::checkbox('passpictures','Yes - Passport Pictures',false)}}
+                    {{Form::label('passpictures','Passport Pictures')}}
+
+                </div>
+                <div class="checkbox">
+                    {{Form::checkbox('passport1','Yes - Passport',false)}}
+                    {{Form::label('passport1','Passport')}}
+
+                </div>
+                <div class="checkbox">
+                    {{Form::checkbox('recommendations','Yes - Recommendations/Reference Letters',false)}}
+                    {{Form::label('recommendations','Recommendations/Reference Letters')}}
+
+                </div>
+                <div class="checkbox">
+                    {{Form::checkbox('regfee','Yes - Registration Fee',false)}}
+                    {{Form::label('regfee','Registration Fee')}}
+
+                </div>
+                <div class="checkbox">
+                    {{Form::checkbox('visa','Yes - Visa',false)}}
+                    {{Form::label('visa','Yes - Visa')}}
+
+                </div>
+            </div>
+        </div>
 
 
-  
-</div>
+
+
+    </div>
 <div class="col-lg-6">
 
     <div class="form-group">
@@ -236,23 +326,17 @@
 
     <div class="form-group">
 
-        {{Form::label('inputposition2','Position 2',array('class'=>'col-sm-2 control-label'))}}
+        {{Form::label('inputposition2','Position Placed',array('class'=>'col-sm-2 control-label'))}}
         <div class="col-sm-10">
             {{Form::text('position2',null,array('class'=>'form-control','id'=>'inputposition2','placeholder'=>'Enter Candidate\'s Second Position'))}}
         </div>
     </div>
 
-    <div class="form-group">
 
-        {{Form::label('inputissuedate','Passport Issue Date',array('class'=>'col-sm-2 control-label'))}}
-        <div class="col-sm-10">
-            {{Form::text('passissuedate',null,array('class'=>'form-control','id'=>'inputissuedate','placeholder'=>'Enter Candidate\'s Passport Issue Date'))}}
-        </div>
-    </div>
 
     <div class="form-group">
 
-        {{Form::label('inputemergency','Emergency Contact',array('class'=>'col-sm-2 control-label'))}}
+        {{Form::label('inputemergency','Emergency contact telephone number',array('class'=>'col-sm-2 control-label'))}}
         <div class="col-sm-10">
             {{Form::text('emergency',null,array('class'=>'form-control','id'=>'inputemergency','placeholder'=>'Enter Candidate\'s Emergency Contact'))}}
         </div>
@@ -267,45 +351,94 @@
     </div>
 
 
-
-  
-
-<h3>Please check where applicable</h3>
-
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                {{Form::checkbox('contract','Yes - Applicant Contract',false)}}
-                {{Form::label('contract','Applicant Contract')}}
 
-            </div>
-            <div class="checkbox">
-                {{Form::checkbox('passpictures','Yes - Passport Pictures',false)}}
-                {{Form::label('passpictures','Passport Pictures')}}
-
-            </div>
-            <div class="checkbox">
-                {{Form::checkbox('passport1','Yes - Passport',false)}}
-                {{Form::label('passport1','Passport')}}
-
-            </div>
-            <div class="checkbox">
-                {{Form::checkbox('recommendations','Yes - Recommendations/Reference Letters',false)}}
-                {{Form::label('recommendations','Recommendations/Reference Letters')}}
-
-            </div>
-            <div class="checkbox">
-                {{Form::checkbox('regfee','Yes - Registration Fee',false)}}
-                {{Form::label('regfee','Registration Fee')}}
-
-            </div>
-            <div class="checkbox">
-                {{Form::checkbox('visa','Yes - Visa',false)}}
-                {{Form::label('visa','Yes - Visa')}}
-
-            </div>
+        {{Form::label('inputcandidatestatus','Candidate Status',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::select('candidatestatus',
+            array(
+            'pending interview'=>'pending interview',
+            'passed interview'=>'passed interview',
+            'failed interview'=>'failed interview',
+            'preparing for offer'=>'preparing for offer',
+            'out of status'=>'out of status',
+            'offer declined'=>'offer declined')
+            ,null,array(
+            'class'=>'form-control',
+            'id'=>'inputCandidateStatus',
+            ))}}
         </div>
     </div>
+
+<hr>
+    <h3> Career History Information</h3>
+   <b style="color:#204d74">Position 1</b>
+    <div class="form-group">
+
+        {{Form::label('inputcompany','Company Name',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('company',null,array('class'=>'form-control','id'=>'inputcompany','placeholder'=>'Company Name'))}}
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        {{Form::label('inputpositionworked','Position Worked',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('positonworked',null,array('class'=>'form-control','id'=>'inputpositionworked','placeholder'=>'Position Worked'))}}
+        </div>
+    </div>
+
+    <h4>Employment Dates</h4>
+    <div class="form-group">
+
+        {{Form::label('inputempdateFrom','From',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('empdateFrom',null,array('class'=>'form-control','id'=>'inputempdateFrom','placeholder'=>'From'))}}
+        </div>
+    </div>
+    <div class="form-group">
+
+        {{Form::label('inputempdateTo','To',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('empdateTo',null,array('class'=>'form-control','id'=>'inputempdateTo','placeholder'=>'To'))}}
+        </div>
+    </div>
+    <hr>
+    <b style="color:#204d74">Position 2</b>
+    <div class="form-group">
+
+        {{Form::label('inputcompany2','Company Name',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('company2',null,array('class'=>'form-control','id'=>'inputcompany2','placeholder'=>'Company Name'))}}
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        {{Form::label('inputpositionworked2','Position Worked',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('positonworked2',null,array('class'=>'form-control','id'=>'inputpositionworked2','placeholder'=>'Position Worked'))}}
+        </div>
+    </div>
+
+    <h4>Employment Dates</h4>
+    <div class="form-group">
+
+        {{Form::label('inputempdateFrom2','From',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('empdateFrom2',null,array('class'=>'form-control','id'=>'inputempdateFrom2','placeholder'=>'From'))}}
+        </div>
+    </div>
+    <div class="form-group">
+
+        {{Form::label('inputempdateTo2','To',array('class'=>'col-sm-2 control-label'))}}
+        <div class="col-sm-10">
+            {{Form::text('empdateTo2',null,array('class'=>'form-control','id'=>'inputempdateTo2','placeholder'=>'To'))}}
+        </div>
+    </div>
+
+<hr>
 
 
 <h3>Payment Information</h3>

@@ -12,7 +12,13 @@ class CandidatesController extends \BaseController {
         $searchf= Input::get('searchf');
 
         if($searchf) {
-            $candidates = Candidate::where('id', '=', $searchf)->orWhere('name', 'LIKE', "%$searchf%")->get();
+            $candidates = Candidate::where('id', '=', $searchf)
+                ->orWhere('name', 'LIKE', "%$searchf%")
+                ->orWhere('registration_number', 'LIKE', "%$searchf%")
+                ->orWhere('candidate_type', 'LIKE', "%$searchf%")
+                ->orWhere('candidatestatus', 'LIKE', "%$searchf%")
+                ->orWhere('address', 'LIKE', "%$searchf%")
+                ->get();
 
         } else{
             $candidates=Candidate::orderBy('created_at','DESC')->get();
@@ -20,7 +26,8 @@ class CandidatesController extends \BaseController {
 
         return $candidates;
     }
-	public function index()
+
+    public function index()
 	{
 		//
         $candidates=$this->filter();
@@ -50,7 +57,11 @@ class CandidatesController extends \BaseController {
 	public function store()
 	{
 		//
+        $user   = Auth::user()->id;
+        $loggeduser=User::where('id',$user)->first();
+        $posted_by=$loggeduser->username;
         $candidate = new Candidate();
+        $candidate->posted_by = $posted_by;
         $candidate->name = Input::get('name');
         $candidate->address=Input::get('address');
         $candidate->tel=Input::get('tel');
@@ -58,7 +69,7 @@ class CandidatesController extends \BaseController {
         $candidate->candidate_type=Input::get('candidate_type');
         $candidate->passport=Input::get('passport');
         $candidate->passportexpiry=Input::get('passportexpiry');
-        $candidate->tel1=Input::get('tel1');
+
         $candidate->orientationdate=Input::get('orientationdate');
         $candidate->interviewdate=Input::get('interviewdate');
         $candidate->medicaldate=Input::get('medicaldate');
@@ -80,6 +91,7 @@ class CandidatesController extends \BaseController {
             $candidate->candidatephoto = $candidate2 .'_'.$filename2;
         }
         $candidate->id=rand(1000,1000000);
+        $candidate->registration_number=rand(10000,10000000);
         $candidate->employer=Input::get('employer');
         $candidate->position2=Input::get('position2');
         $candidate->passissuedate=input::get('passissuedate');
@@ -92,6 +104,19 @@ class CandidatesController extends \BaseController {
         $candidate->regfee=Input::get('regfee')? true : false;
         $candidate->visa=Input::get('visa')? true : false;
         $candidate->paymenttype=Input::get('paymenttype');
+        $candidate->city=Input::get('city');
+        $candidate->parishes=Input::get('parishes');
+        $candidate->country=Input::get('country');
+        $candidate->optionalposition=Input::get('optionalposition');
+        $candidate->candidatestatus=Input::get('candidatestatus');
+        $candidate->company=Input::get('company');
+        $candidate->positonworked=Input::get('positonworked');
+        $candidate->empdateFrom=Input::get('empdateFrom');
+        $candidate->empdateTo=Input::get('empdateTo');
+        $candidate->company2=Input::get('company2');
+        $candidate->positonworked2=Input::get('positonworked2');
+        $candidate->empdateFrom2=Input::get('empdateFrom2');
+        $candidate->empdateTo2=Input::get('empdateTo2');
         $candidate->save();
 
         return Redirect::to('candidates')->with('notification','Candidate Was Added Successfully');
@@ -126,7 +151,12 @@ class CandidatesController extends \BaseController {
 	{
 		//
         $candidate= Candidate::findOrFail($id);
-        Candidate::where('id', $candidate)->first();
+        if (is_null($candidate))
+        {
+            return Redirect::route('candidates.index');
+        }
+
+
         return View::make('candidates/candidate')->with('candidate',$candidate);
 
 	}
@@ -141,8 +171,17 @@ class CandidatesController extends \BaseController {
 	public function edit($id)
 	{
 		//
+
+
+
+        //redirect to update form
+
         $candidate=Candidate::findOrFail($id);
-        return View::make('candidates/edit',array('candidate'=>$candidate));
+        if (is_null($candidate))
+        {
+            return Redirect::route('candidates.index');
+        }
+        return View::make('candidates.edit',array('candidate'=>$candidate));
 	}
 
 
@@ -152,45 +191,74 @@ class CandidatesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+    public function update($id)
 	{
+        //echo $id;
 
-        $candidate=Candidate::where('id','=',$id);
+        $candidate=Candidate::find($id);
 
-        Candidate::where('id','=',$candidate)->update(
-            array(
 
-        'name' => Input::get('name'),
-        'address'=>Input::get('address'),
-        'tel'=>Input::get('tel'),
-        'email'=>Input::get('email'),
-        'candidate_type'=>Input::get('candidate_type'),
-        'passport'=>Input::get('passport'),
-        'passportexpiry'=>Input::get('passportexpiry'),
-        'tel1'=>Input::get('tel1'),
-       'orientationdate'=>Input::get('orientationdate'),
-        'interviewdate'=>Input::get('interviewdate'),
-        'medicaldate'=>Input::get('medicaldate'),
-        'cbc'=>Input::get('cbc'),
-        'embassydate'=>Input::get('embassydate'),
-        'traveldate'=>Input::get('traveldate'),
+        $candidate->name = Input::get('name');
+           $candidate->address=Input::get('address');
+           $candidate->tel=Input::get('tel');
+           $candidate->email=Input::get('email');
+           $candidate->candidate_type=Input::get('candidate_type');
+           $candidate->passport=Input::get('passport');
+           $candidate->passportexpiry=Input::get('passportexpiry');
 
-       'employer'=>Input::get('employer'),
-        'position2'=>Input::get('position2'),
-       'passissuedate'=>input::get('passissuedate'),
-        'emergency'=>Input::get('emergency'),
-        'emergencyaddress'=>Input::get('emergencyaddress'),
-       'contract'=>Input::get('contract')? true : false,
-        'passpictures'=>Input::get('passpictures')? true : false,
-        'passport1'=>Input::get('passport1')? true : false,
-        'recommendations'=>Input::get('recommendations')? true : false,
-        'regfee'=>Input::get('regfee')? true : false,
-        'visa'=>Input::get('visa')? true : false,
-        'paymenttype'=>Input::get('paymenttype'),
-        ));
+           $candidate->orientationdate=Input::get('orientationdate');
+           $candidate->interviewdate=Input::get('interviewdate');
+           $candidate->medicaldate=Input::get('medicaldate');
+           $candidate->cbc=Input::get('cbc');
+           $candidate->embassydate=Input::get('embassydate');
+           $candidate->traveldate=Input::get('traveldate');
+           if(Input::hasFile('image')) {
+               $fileName=Input::file('image')->getClientOriginalName();
+               $file = Image::make(Input::file('image')->getRealPath());
+               //$filename=$file->getClientOriginalName();
+               $filename2 = preg_replace("/ /", "-", $fileName);
+               $candidate2=preg_replace("/ /","_", $candidate->name);
+               //$fileext=$file->getClientOriginalExtension();
+               $photoPath=public_path() . '/imagescan/'.$candidate2 .'_'.$filename2;
 
-        return Redirect::to('candidates.show')->with('notification', 'Candidate account updated!');
-	}
+               $file->fit(200,300)->save($photoPath);
+
+               //$filename=$image->getClientOriginalName();
+               $candidate->candidatephoto = $candidate2 .'_'.$filename2;
+           }
+           $candidate->employer=Input::get('employer');
+           $candidate->position2=Input::get('position2');
+           $candidate->passissuedate=input::get('passissuedate');
+           $candidate->emergency=Input::get('emergency');
+           $candidate->emergencyaddress=Input::get('emergencyaddress');
+           $candidate->contract=Input::get('contract')? true : false;
+           $candidate->passpictures=Input::get('passpictures')? true : false;
+           $candidate->passport1=Input::get('passport1')? true : false;
+           $candidate->recommendations=Input::get('recommendations')? true : false;
+           $candidate->regfee=Input::get('regfee')? true : false;
+           $candidate->visa=Input::get('visa')? true : false;
+           $candidate->paymenttype=Input::get('paymenttype');
+        $candidate->city=Input::get('city');
+        $candidate->parishes=Input::get('parishes');
+        $candidate->country=Input::get('country');
+        $candidate->optionalposition=Input::get('optionalposition');
+        $candidate->candidatestatus=Input::get('candidatestatus');
+        $candidate->company=Input::get('company');
+        $candidate->positonworked=Input::get('positonworked');
+        $candidate->empdateFrom=Input::get('empdateFrom');
+        $candidate->empdateTo=Input::get('empdateTo');
+        $candidate->company2=Input::get('company2');
+        $candidate->positonworked2=Input::get('positonworked2');
+        $candidate->empdateFrom2=Input::get('empdateFrom2');
+        $candidate->empdateTo2=Input::get('empdateTo2');
+
+
+           $candidate->save();
+
+          return Redirect::route('candidates.index')->with('notification','Candidate Was updated Successfully');
+
+
+         	}
 
 
 	/**

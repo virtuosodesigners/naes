@@ -16,13 +16,15 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('candidates/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@create','as'=>'candidates.create'));
-Route::get('candidates',array('before'=>'auth','uses'=>'CandidatesController@index','as'=>'candidates.index'));
-Route::get('candidates/candidate/{id}',array('before'=>'auth','uses'=>'CandidatesController@show','as'=>'candidates.show'));
-Route::post('/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@store','as'=>'candidates.store'));
-Route::get('candidates/edit/{id}',array('before'=>'auth','uses'=>'CandidatesController@edit','as'=>'candidates.edit'));
-Route::post('/update/{id}',array('before'=>'auth','uses'=>'CandidatesController@update','as'=>'candidates.update'));
-Route::get('candidates/delete/{id}',array('before'=>'auth','uses'=>'CandidatesController@destroy','as'=>'candidates.delete'));
+Route::resource('candidates','CandidatesController');
+Route::resource('notes','NotesController');
+//Route::get('candidates/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@create','as'=>'candidates.create'));
+//Route::get('candidates',array('before'=>'auth','uses'=>'CandidatesController@index','as'=>'candidates.index'));
+//Route::get('candidates/candidate/{id}',array('before'=>'auth','uses'=>'CandidatesController@show','as'=>'candidates.show'));
+//Route::post('/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@store','as'=>'candidates.store'));
+//Route::get('candidates/edit/{id}',array('before'=>'auth','uses'=>'CandidatesController@edit','as'=>'candidates.edit'));
+//Route::post('/update/{id}',array('before'=>'auth','uses'=>'CandidatesController@update','as'=>'candidates.update'));
+//Route::get('candidates/delete/{id}',array('before'=>'auth','uses'=>'CandidatesController@destroy','as'=>'candidates.delete'));
 
 Route::get('candidates/export',array('before'=>'auth','uses'=>'CandidatesController@csvExport','as'=>'csvexport'));
 Route::get('allpayments',array('before'=>'auth','uses'=>'PaymentsController@index','as'=>'payments.thedaypayment'));
@@ -32,7 +34,7 @@ Route::get('payments/export',array('before'=>'auth','uses'=>'PaymentsController@
 
 
 
-Route::post('candidates/candidate/{id}',array('before'=>'auth','uses'=>'PaymentsController@store','as'=>'payments.store'));
+Route::post('candidates/{id}',array('before'=>'auth','uses'=>'PaymentsController@store','as'=>'payments.store'));
 
 
 

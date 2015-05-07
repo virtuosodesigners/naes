@@ -134,7 +134,7 @@ class PaymentsController extends \BaseController {
         if($users){
         $usercode=$users->codverify;
         }else{
-            return Redirect::to('candidates/candidate/' . Input::get('candidateid'))->with('danger', 'User does not exists');
+            return Redirect::to('candidates/' . Input::get('candidateid'))->with('danger', 'User does not exists');
 
         }
 
@@ -156,7 +156,7 @@ class PaymentsController extends \BaseController {
                 'verify_attempt'    =>  0,
             ));
 
-          return Redirect::to('candidates/candidate/' . Input::get('candidateid'))->with('notification', 'Payment Was Added Successfully');
+          return Redirect::to('candidates/' . Input::get('candidateid'))->with('notification', 'Payment Was Added Successfully');
 
 
         }else{
@@ -172,7 +172,7 @@ class PaymentsController extends \BaseController {
                 'verify_attempt'    =>  $verify_attempt + $attempts,
             ));
 
-            return Redirect::to('candidates/candidate/' . Input::get('candidateid'))->with('danger', 'The code can not be verified');
+            return Redirect::to('candidates/' . Input::get('candidateid'))->with('danger', 'The code can not be verified');
 
 
         }

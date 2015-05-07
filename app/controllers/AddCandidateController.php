@@ -40,6 +40,19 @@ class AddCandidateController extends BaseController{
         $candidate->regfee=Input::get('regfee')? true : false;
         $candidate->visa=Input::get('visa')? true : false;
         $candidate->paymenttype=Input::get('paymenttype');
+        $candidate->city=Input::get('city');
+        $candidate->parishes=Input::get('parishes');
+        $candidate->country=Input::get('country');
+        $candidate->optionalposition=Input::get('optionalposition');
+        $candidate->candidropstatus=Input::get('candidropstatus');
+        $candidate->company=Input::get('company');
+        $candidate->positonworked=Input::get('positonworked');
+        $candidate->empdateFrom=Input::get('empdateFrom');
+        $candidate->empdateTo=Input::get('empdateTo');
+        $candidate->company2=Input::get('company2');
+        $candidate->positonworked2=Input::get('positonworked2');
+        $candidate->empdateFrom2=Input::get('empdateFrom2');
+        $candidate->empdateTo2=Input::get('empdateTo2');
         $candidate->save();
 
         return Redirect::back();
