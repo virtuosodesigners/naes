@@ -57,7 +57,7 @@ class CandidatesController extends \BaseController {
 	public function store()
 	{
 		//
-        $user   = Auth::user()->id;
+        $user= Auth::user()->id;
         $loggeduser=User::where('id',$user)->first();
         $posted_by=$loggeduser->username;
         $candidate = new Candidate();

@@ -15,9 +15,10 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
-
-Route::resource('candidates','CandidatesController');
-Route::resource('notes','NotesController');
+Route::group(array('before'=>'auth'), function() {
+    Route::resource('candidates','CandidatesController');
+    Route::resource('notes','NotesController');
+});
 //Route::get('candidates/addcandidate',array('before'=>'auth','uses'=>'CandidatesController@create','as'=>'candidates.create'));
 //Route::get('candidates',array('before'=>'auth','uses'=>'CandidatesController@index','as'=>'candidates.index'));
 //Route::get('candidates/candidate/{id}',array('before'=>'auth','uses'=>'CandidatesController@show','as'=>'candidates.show'));
